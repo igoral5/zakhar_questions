@@ -9,13 +9,16 @@
 \usepackage{amsmath}
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta}
+\tikzset{
+    >={Stealth[width'=2pt 0.1, length=5pt]}
+}
 \begin{document}
     \noindent
     \begin{tikzpicture}
         % Горизонтальная ось времени
-        \draw[-Stealth] (-0.5, 0) -- (10.5, 0) node[right] {$t$};
+        \draw[->] (-0.5, 0) -- (10.5, 0) node[right] {$t$};
         % Вертикальная ось скорости
-        \draw[-Stealth] (0, -0.5) -- (0, 3) node[above] {$v$};
+        \draw[->] (0, -0.5) -- (0, 3) node[above] {$v$};
         % Начало координат
         \fill[black] (0, 0) circle (1pt) node[below left] {$O$};
         % График скорости
@@ -30,9 +33,9 @@
     \hspace*{0.3cm}
     \begin{tikzpicture}
          % Горизонтальная ось времени
-        \draw[-Stealth] (-0.5, 0) -- (10.5, 0) node[right] {$t$};
+        \draw[->] (-0.5, 0) -- (10.5, 0) node[right] {$t$};
         % Вертикальная ось перемещений
-        \draw[-Stealth] (0, -0.5) -- (0, 6.75) node[above] {$S$};
+        \draw[->] (0, -0.5) -- (0, 6.75) node[above] {$S$};
         % Начало координат
         \fill[black] (0, 0) circle (1pt) node[below left] {$O$};
         % График перемещений, первый участок до t1

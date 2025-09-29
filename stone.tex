@@ -9,26 +9,29 @@
 \usepackage{amsmath}
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta}
+\tikzset{
+	>={Stealth[width'=2pt 0.1, length=5pt]}
+}
 \begin{document}
 	 \begin{tikzpicture}[domain=0:28.571, samples=100, scale=0.3]
+		% Маленький кружок, представляющий камень в начале
+		\draw[fill=blue!40, fill opacity=0.4] (0, 10) circle (8pt);
+		% Маленький кружок, представляющий камень в конце
+		\draw[fill=blue!40, fill opacity=0.4] (28.571, 0) circle (8pt);
+		% Размерная линия высоты с подписью
+		\draw[<->] (0, 0) -- node[left] {$h_0=10~\text{м}$} (0, 10);
+		% Вектор горизонтальной скорости в начале
+		\draw[->] (0, 10) -- node[above] {$v_x=20~\frac{\text{м}}{\text{с}}$} (5, 10);
 		% Горизонтальная линия с подписью
 		\draw (0, 0) -- node[above] {$S \approx 28.571~\text{м}$} (28.571, 0);
-		% Маленький кружок, представляющий камень в начале
-		\draw (0, 10) circle (10pt);
-		% Размерная линия высоты с подписью
-		\draw[Stealth-Stealth] (0, 0) -- node[left] {$h_0=10~\text{м}$} (0, 10);
-		% Вектор горизонтальной скорости в начале
-		\draw[-Stealth] (0, 10) -- node[above] {$v_x=20~\frac{\text{м}}{\text{с}}$} (5, 10);
 		% Траектория падения камня
 		\draw plot (\x, {10 - ((9.8 * (\x / 20) ^ 2) / 2)});
 		% Вектор горизонтальной скорости в конце
-		\draw[-Stealth] (28.571, 0) -- node[above] {$v_x=20~\frac{\text{м}}{\text{с}}$} (33.571, 0);
-		% Маленький кружок, представляющий камень в конце
-		\draw (28.571, 0) circle (10pt);
+		\draw[->] (28.571, 0) -- node[above] {$v_x=20~\frac{\text{м}}{\text{с}}$} (33.571, 0);
 		% Вектор вертикальной скорости в конце
-		\draw[-Stealth] (28.571, 0) -- node[left] {$v_y \approx 14~\frac{\text{м}}{\text{с}}$} (28.571, -3.5);
+		\draw[->] (28.571, 0) -- node[left] {$v_y \approx 14~\frac{\text{м}}{\text{с}}$} (28.571, -3.5);
 		% Вектор полной скорости в конце
-		\draw[-Stealth] (28.571, 0) -- node[right=0.75cm] {$v \approx 21.413~\frac{\text{м}}{\text{с}}$} (33.571, -3.5);
+		\draw[->] (28.571, 0) -- node[right=0.75cm] {$v \approx 21.413~\frac{\text{м}}{\text{с}}$} (33.571, -3.5);
 		% Горизонтальная пунктирная линия
 		\draw[dashed] (28.571, -3.5) -- (33.571, -3.5);
 		% Вертикальная пунктирная линия
