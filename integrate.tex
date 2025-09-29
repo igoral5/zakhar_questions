@@ -1,0 +1,68 @@
+\documentclass{article}
+\usepackage{xltxtra}
+\usepackage{fontspec}
+\usepackage{polyglossia}
+\setmainlanguage{russian}
+\setotherlanguage{english}
+\setmainfont{Times New Roman}
+\newfontfamily{\cyrillicfont}{Times New Roman}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+\begin{document}
+    \noindent
+    \begin{tikzpicture}
+        % Горизонтальная ось времени
+        \draw[-Stealth] (-0.5, 0) -- (10.5, 0) node[right] {$t$};
+        % Вертикальная ось скорости
+        \draw[-Stealth] (0, -0.5) -- (0, 3) node[above] {$v$};
+        % Начало координат
+        \fill[black] (0, 0) circle (1pt) node[below left] {$O$};
+        % График скорости
+        \draw (0, 0) -- (5, 2.5) -- (10, 0) node[below] {$t_2$};
+        % Вертикальная пунктирная линия
+        \draw[dashed] (5, 2.5) -- (5, 0) node[below] {$t_1$};
+        % Горизонтальная пунктирная линия
+        \draw[dashed] (5, 2.5) -- (0, 2.5) node[left] {$v_{max}$};
+    \end{tikzpicture}
+
+    \noindent
+    \hspace*{0.3cm}
+    \begin{tikzpicture}
+         % Горизонтальная ось времени
+        \draw[-Stealth] (-0.5, 0) -- (10.5, 0) node[right] {$t$};
+        % Вертикальная ось перемещений
+        \draw[-Stealth] (0, -0.5) -- (0, 6.75) node[above] {$S$};
+        % Начало координат
+        \fill[black] (0, 0) circle (1pt) node[below left] {$O$};
+        % График перемещений, первый участок до t1
+        \draw[domain=0:5, samples=20, variable=\t] plot (\t, {(0.25 * \t^2) / 2});
+        % Горизонтальная пунктирная линия S1
+        \draw[dashed] (5, 3.125) -- (0, 3.125) node[left] {$S_1$};
+        % Вертикальная пунктирная линия t1
+        \draw[dashed] (5, 3.125) -- (5, 0) node[below] {$t_1$};
+        % График перемещений, второй участок от t1 до t2
+        \draw[domain=5:10, samples=20, variable=\t] plot (\t, {3.125 + 1.25 * (\t - 5) - 0.25 * (\t - 5)^2 / 2});
+        % Горизонтальная пунктирная линия S2
+        \draw[dashed] (10, 6.25) -- (0, 6.25) node[left] {$S_2$};
+        % Вертикальная пунктирная линия t2
+        \draw[dashed] (10, 6.25) -- (10, 0) node[below] {$t_2$};
+    \end{tikzpicture}
+
+    \noindent
+    Пусть $a_1$ ускорение на первом участке, которое равно:
+    \[
+        a_1 = \frac{v_{max}}{t_1}
+    \]
+    и $a_2$ ускорение на втором участке:
+    \[
+        a_2 = \frac{- v_{max}}{t_2 - t_1}
+    \]
+    Тогда:
+    \[
+        S_1 = \frac{a_1 \cdot t_1^2}{2}
+    \]
+    \[
+        S_2 = S_1 + v_{max} \cdot (t_2 - t_1) + \frac{a_2 \cdot (t_2 - t_1)^2}{2}
+    \]
+\end{document}

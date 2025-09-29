@@ -1,0 +1,51 @@
+\documentclass[fleqn]{minimal}
+\usepackage{xltxtra}
+\usepackage{fontspec}
+\usepackage{polyglossia}
+\setmainlanguage{russian}
+\setotherlanguage{english}
+\setmainfont{Times New Roman}
+\setromanfont{Times New Roman} 
+\setsansfont{Arial} 
+\setmonofont{Liberation Mono} 
+\newfontfamily{\cyrillicfont}{Times New Roman} 
+\newfontfamily{\cyrillicfontrm}{Times New Roman}
+\newfontfamily{\cyrillicfontsf}{Arial}
+\newfontfamily{\cyrillicfonttt}{Liberation Mono}
+\usepackage[version=4]{mhchem}
+\usepackage{xcolor}
+\begin{document}
+    \[
+        \ce{^{239}_{92} U} \to \ce{^{235}_{90} Th} + \ce{^{4}_{2} He}
+    \]
+    \[
+        \ce{^{235}_{90} Th} \to \ce{^{231}_{88} Ra} + \ce{^{4}_{2} He}
+    \]
+    \[
+        \ce{^{231}_{88} Ra} \to \ce{^{227}_{86} Rn} + \ce{^{4}_{2} He}
+    \]
+    \[
+        \ce{^{227}_{86} Rn} \to \ce{^{227}_{87} Fr} + \ce{^0_{-1} e} + \overline{\nu_e}
+    \]
+    \[
+        \ce{^{227}_{87} Fr} \to \ce{^{227}_{88} Ra} + \ce{^0_{-1} e} + \overline{\nu_e}
+    \]
+    \[
+        \ce{^{227}_{88} Ra} \to \ce{^{227}_{89} Ac} + \ce{^0_{-1} e} + \overline{\nu_e}
+    \]
+    \[
+        \ce{^{227}_{89} Ac} \to \ce{^{227}_{90} Th} + \ce{^0_{-1} e} + \overline{\nu_e}
+    \]
+    \[
+        \ce{^2_1 H} + \ce{^1_1 H} \to \ce{^3_2 He} + \gamma + \fcolorbox{red}{white}{5.49\ \mbox{МэВ}}
+    \]
+    \[
+        \ce{^1_0 n} + \ce{^{235}_{92} U} \to \ce{^{141}_{56} Ba} + \ce{^{92}_{36} Kr} + 3 \cdot \ce{^1_0 n}
+    \]
+    \[
+        \ce{^{14}_7 N} + \ce{^4_2 He} \to \ce{^{17}_8 O} + \ce{^1_1 H}
+    \]
+    \[
+        1 \mbox{ Кл/кг} \approx 3.876 \cdot 10^3 \mbox{ Р (Ренген)}
+    \]
+\end{document}

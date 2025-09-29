@@ -1,0 +1,62 @@
+\documentclass{article}
+\usepackage{xltxtra}
+\usepackage{fontspec}
+\usepackage{polyglossia}
+\setmainlanguage{russian}
+\setotherlanguage{english}
+\setmainfont{Times New Roman}
+\newfontfamily{\cyrillicfont}{Times New Roman}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+\begin{document}
+	 \begin{tikzpicture}[domain=0:28.571, samples=100, scale=0.3]
+		% Горизонтальная линия с подписью
+		\draw (0, 0) -- node[above] {$S \approx 28.571~\text{м}$} (28.571, 0);
+		% Маленький кружок, представляющий камень в начале
+		\draw (0, 10) circle (10pt);
+		% Размерная линия высоты с подписью
+		\draw[Stealth-Stealth] (0, 0) -- node[left] {$h_0=10~\text{м}$} (0, 10);
+		% Вектор горизонтальной скорости в начале
+		\draw[-Stealth] (0, 10) -- node[above] {$v_x=20~\frac{\text{м}}{\text{с}}$} (5, 10);
+		% Траектория падения камня
+		\draw plot (\x, {10 - ((9.8 * (\x / 20) ^ 2) / 2)});
+		% Вектор горизонтальной скорости в конце
+		\draw[-Stealth] (28.571, 0) -- node[above] {$v_x=20~\frac{\text{м}}{\text{с}}$} (33.571, 0);
+		% Маленький кружок, представляющий камень в конце
+		\draw (28.571, 0) circle (10pt);
+		% Вектор вертикальной скорости в конце
+		\draw[-Stealth] (28.571, 0) -- node[left] {$v_y \approx 14~\frac{\text{м}}{\text{с}}$} (28.571, -3.5);
+		% Вектор полной скорости в конце
+		\draw[-Stealth] (28.571, 0) -- node[right=0.75cm] {$v \approx 21.413~\frac{\text{м}}{\text{с}}$} (33.571, -3.5);
+		% Горизонтальная пунктирная линия
+		\draw[dashed] (28.571, -3.5) -- (33.571, -3.5);
+		% Вертикальная пунктирная линия
+		\draw[dashed] (33.571, 0) -- (33.571, -3.5);
+	 \end{tikzpicture}
+
+	 Можно представить, что камень одновременно участвует в 2-х движениях:
+
+	 1. Равномерное движение по горизонтали со скоростью $v_x=20~\frac{\text{м}}{\text{c}}$
+
+	 2. Равноускоренное движение по вертикали с ускорением $g=9.8~\frac{\text{м}}{\text{с}^2}$ и нулевой начальной скоростью.
+
+	 Уравнение равноускоренного движения $h = h_0 - \frac{g \cdot t^2}{2}$ 
+
+	 В конечный момент времени, когда камень упадёт на землю $h=0$, откуда время падения: 
+	 \[
+	 	t=\sqrt{\frac{2 \cdot h_0}{g}}=\sqrt{\frac{2 \cdot 10~\text{м}}{9.8~\frac{\text{м}}{\text{с}^2}}}\approx1.428~\text{с}
+	 \]
+	 За это время камень в горизонтальной плоскости успеет пролететь 
+	 \[
+	 	S=v_x \cdot t = 20~\frac{\text{м}}{\text{с}} \cdot 1.428~\text{c} \approx 28.571~\text{м}
+	 \]
+	 А его вертикальная скорость в момент удара о землю будет:
+	 \[
+	 	v_y = g \cdot t = 9.8~\frac{\text{м}}{\text{c}^2} \cdot 1.428~\text{c} \approx 14~\frac{\text{м}}{\text{c}}
+	 \]
+	 Полная скорость камня в момент удара будет равна векторной сумме векторов $v_x$ и $v_y$:
+	 \[
+	 	v = \sqrt{v_x^2 + v_y^2} = \sqrt{(20~\frac{\text{м}}{\text{с}})^2 + (14~\frac{\text{м}}{\text{с}}})^2 \approx 24.413~\frac{\text{м}}{\text{с}}
+	 \]
+\end{document}
