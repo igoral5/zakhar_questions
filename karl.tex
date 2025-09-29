@@ -13,13 +13,14 @@
 \newfontfamily{\cyrillicfontrm}{Times New Roman}
 \newfontfamily{\cyrillicfontsf}{Arial} 
 \newfontfamily{\cyrillicfonttt}{Noto Sans Mono}
+\usetikzlibrary{arrows.meta}
 \tikzset{help lines/.style={color=#1!50, very thin}, help lines/.default=gray}
 \begin{document}
     \begin{tikzpicture}[domain=-1.5:1.5, samples=100, scale=3]
         % \clip[draw] (0.5, 0.5) circle (0.6cm);
         \draw[step=0.5, help lines] (-1.4, -1.4) grid (1.4, 2.24);
-        \draw[-stealth] (-1.5, 0) -- (1.5, 0) node[right] {$x$};
-        \draw[-stealth] (0, -1.5) -- (0, 2.25) node[above] {$f(x)$};
+        \draw[-Stealth] (-1.5, 0) -- (1.5, 0) node[right] {$x$};
+        \draw[-Stealth] (0, -1.5) -- (0, 2.25) node[above] {$f(x)$};
         % \draw (0, 0) circle [radius=1];
         % \draw (3mm, 0mm) arc [start angle=0, end angle=30, radius=3mm];
 
