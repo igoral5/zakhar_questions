@@ -1,0 +1,72 @@
+\documentclass{minimal}
+\usepackage{xltxtra}
+\usepackage{fontspec}
+\usepackage{polyglossia}
+\setmainlanguage{russian}
+\setotherlanguage{english}
+\setmainfont{Times New Roman}
+\newfontfamily{\cyrillicfont}{Times New Roman}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+\tikzset{
+    >=Stealth
+}
+\begin{document}
+    \begin{tikzpicture}[domain=0:10, samples=50]
+        \draw plot(\x, {-0.17 * (\x - 5)^2 + 4.25});
+        \draw[->] (-0.5, 0) -- (10.5, 0) node[right] {$S$};
+        \draw[fill=blue!40, fill opacity=0.4] (0, 0) circle (4pt);
+        \draw[->] (0, 0) -- (60 : 2) node[above] {$v$};
+        \draw[->] (0, 0) -- (1, 0) node[below] {$v_x$};
+        \draw[->] (0, 0) -- (0, 1.732) node[left] {$v_y$};
+        \draw[dashed] (0, 1.732) -- (1, 1.732);
+        \draw[dashed] (1, 0) -- (1, 1.732);
+        \draw (3mm, 0) arc [start angle=0, end angle=60, radius=3mm] node[right] {$60^{\circ}$};
+        \draw[fill=blue!40, fill opacity=0.4] (3, 3.57) circle (4pt) node[left=3mm, black, opacity=1] {$1~\text{случай}$};
+        \draw[->] (3, 3.57) -- +(30:1.5) node[above] {$v$};
+        \draw[->] (3, 3.57) -- +(1.299, 0) node[below] {$v_x$};
+        \draw[->] (3, 3.57) -- +(0, 0.75) node[left] {$v_y$};
+        \draw[dashed] (4.299, 3.57) -- +(0, 0.75);
+        \draw[dashed] (3, 4.32) -- +(1.299, 0);
+        \draw (3.3, 3.57) arc [start angle=0, end angle=30, radius=0.3] node[right=2mm] {$30^{\circ}$};
+        \draw[fill=blue!40, fill opacity=0.4] (7, 3.57) circle (4pt) node[above right, black, opacity=1] {$2~\text{случай}$};
+        \draw[->] (7, 3.57) -- +(-30:1.5) node[above] {$v$};
+        \draw[->] (7, 3.57) -- +(1.299, 0) node[below] {$v_x$};
+        \draw[->] (7, 3.57) -- +(0, -0.75) node[left] {$v_y$};
+        \draw[dashed] (8.299, 3.57) -- +(0, -0.75);
+        \draw[dashed] (7, 2.82) -- +(1.299, 0);
+        \draw (7.3, 3.57) arc [start angle=0, end angle=-30, radius=3mm] node[right] {$-30^{\circ}$};
+    \end{tikzpicture}
+    \noindent
+
+    В момент выстрела $v=200~\frac{\text{м}}{\text{с}}$ и угол к горизонту $\alpha=60^{\circ}$ Вертикальная скорость снаряда:
+    \[
+        v_y=v \cdot \sin{\alpha}=200 \cdot \sin{60^{\circ}}\approx173.205~\frac{\text{м}}{\text{с}}
+    \]
+    Горизонтальная скорость:
+    \[
+        v_x=v \cdot \cos{\alpha}=200 \cdot \cos{60^{\circ}}=100~\frac{\text{м}}{\text{с}} 
+    \]
+    В процессе полета горизонтальная скорость не меняется, а вертикальная уменьшается до нуля, это самая верхняя точка траектории, и затем продолжает уменьшаться в отрицательную сторону.
+    Нам нужно найти время через которое угол к горизонту будет $\alpha=30^{\circ}$ Найдем, какой должна быть вертикальная скорость $v_y$, что бы угол $\alpha=30^{\circ}$. $v_x$ и $v_y$ связаны отношением:
+    \[
+        \tan{\alpha}=\frac{v_y}{v_x}
+    \]
+    Откуда:
+    \[
+        v_y=v_x \cdot \tan{\alpha}=100~\frac{\text{м}}{\text{с}} \cdot \tan{30^{\circ}} \approx 57.735~\frac{\text{м}}{\text{с}}
+    \]
+    Найдем через какое время $v_y$ будет равна $57.735~\frac{\text{м}}{\text{с}}$, вертикальная скорость изменяется следующим образом:
+    \[
+        v_y=v_{0y} - g \cdot t
+    \]
+    Откуда:
+    \[
+        t = \frac{v_{0y} - v_y}{g}=\frac{173.205~\frac{\text{м}}{\text{с}} - 57.735~\frac{\text{м}}{\text{с}}}{9.8~\frac{\text{м}}{\text{с}^2}} \approx 11.783~\text{с}
+    \]
+    Кроме того, после прохождения наивысшей точки траектории, будет еще один момент, когда угол к горизонту будет $\alpha=-30^{\circ}$, в этот момент вертикальная скорость будет $v_y=-57.735~\frac{\text{м}}{\text{с}}$
+    \[
+        t = \frac{v_{0y} - v_y}{g}=\frac{173.205~\frac{\text{м}}{\text{с}} + 57.735~\frac{\text{м}}{\text{с}}}{9.8~\frac{\text{м}}{\text{с}^2}} \approx 23.565~\text{с}
+    \]
+\end{document}
