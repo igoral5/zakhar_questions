@@ -1,0 +1,26 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usetikzlibrary{arrows,automata} 
+\begin{document}
+  \begin{tikzpicture}[->,>=stealth', initial text=reset]
+    \tikzstyle{every state}=[fill=blue!20]
+    \node [state,initial] (S0) at (162:4) {$S_0$};
+    \node [state] (S1) at (90:4) {$S_1$};
+    \node [state] (S2) at (18:4) {$S_2$};
+    \node [state] (S3) at (-54:4) {$S_3$};
+    \node [state] (S4) at (-126:4) {$S_4$};
+    \draw (S0) to[in=110, out=160, loop] node[auto] {$I_5$} ();
+    \draw (S0) to[bend left] node[auto] {$I_1$} (S1);
+    \draw (S0) .. controls (120:7) and (60:7) .. node[auto] {$I_2$} (S2);
+    \draw (S1) to[bend left] node[auto] {$I_1$} (S2);
+    \draw (S1) to[bend left] node[auto] {$I_2$} (S3);
+    \draw (S1) to[bend left] node[auto] {$I_5$} (S0);
+    \draw (S2) to[bend left] node[auto] {$I_1$} (S3);
+    \draw (S2) .. controls (-24:7) and (-84:7) .. node[auto] {$I_2$} (S4);
+    \draw (S2) .. controls (-30:15) and (-150:15) .. node[auto] {$I_5$} (S0);
+    \draw (S3) to[bend left] node[auto] {$I_1$} (S4);
+    \draw (S3) to[bend left] node[above right] {$I_2 \mid I_5$} (S0);
+    \draw (S4) to[bend left] node[auto] {$I_1 \mid I_2 \mid I_5$} (S0);       
+  \end{tikzpicture}
+\end{document}
+
