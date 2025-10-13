@@ -1,0 +1,24 @@
+\documentclass{minimal}
+\usepackage{xltxtra}
+\usepackage{fontspec}
+\usepackage{polyglossia}
+\setmainlanguage{russian}
+\setotherlanguage{english}
+\setmainfont{Times New Roman}
+\newfontfamily{\cyrillicfont}{Times New Roman}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+\begin{document}
+    \begin{tikzpicture}
+        \coordinate (A) at (0, 0);
+        \coordinate (C1) at (45:10);
+        \coordinate (B) at (10,0);
+        \coordinate (C2) at ++(150:10);
+        \coordinate (C) at (intersection of A--C1 and B--C2);
+        \draw (A) node[left] {$A$} -- (C) node[above=0.3cm] {$C$} -- (B) node[right] {$B$} --(A);
+        \draw[rotate=45] (A) + (1,0) rectangle (1.8, 0.5);
+        \draw (C) circle [radius=0.25];
+        \draw[rotate=-30] (C) rectangle +(1.8, 0.5);
+    \end{tikzpicture}
+\end{document}
