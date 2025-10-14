@@ -7,18 +7,128 @@
 \setmainfont{Times New Roman}
 \newfontfamily{\cyrillicfont}{Times New Roman}
 \usepackage{amsmath}
+\usepackage{physics}
 \usepackage{tikz}
-\usetikzlibrary{arrows.meta}
+\usetikzlibrary{arrows.meta,calc}
+\tikzset{
+    >={Stealth[width'=2pt 0.1, length=5pt]}
+}
 \begin{document}
-    \begin{tikzpicture}
-        \coordinate (A) at (0, 0);
-        \coordinate (C1) at (45:10);
-        \coordinate (B) at (10,0);
-        \coordinate (C2) at ++(150:10);
-        \coordinate (C) at (intersection of A--C1 and B--C2);
-        \draw (A) node[left] {$A$} -- (C) node[above=0.3cm] {$C$} -- (B) node[right] {$B$} --(A);
-        \draw[rotate=45] (A) + (1,0) rectangle (1.8, 0.5);
-        \draw (C) circle [radius=0.25];
-        \draw[rotate=-30] (C) rectangle +(1.8, 0.5);
+    \begin{tikzpicture}[scale=2]
+        \def\m{-1.3}
+        \draw (0,0) -- (5,0);
+        \draw (0,0) -- (30:5);
+        \draw (0.5, 0) arc[start angle=0, end angle=30, radius=0.5];
+        \node at (0.8, 0.2) {$\alpha$};
+        \draw[rotate=30] (2, 0) rectangle(3, 0.5);
+        \coordinate (O) at ($(0,0)!1!30:(2.5,0.25)$);
+        \coordinate (mg) at ($(O) + (0, \m)$);
+        \draw[fill=red] (O) circle (1pt);
+        \draw[->] (O) -- node[right] {$\vec{mg}$} (mg);
+        \draw[->] (O) -- node[above] {$\vec{F_x}$} ($(O)!1!30:+({sin(30) * \m},0)$) coordinate (x);
+        \draw[->] (O) -- node[right] {$\vec{F_y}$} ($(O)!1!30:+(0,{cos(30) * \m})$) coordinate (y);
+        \draw[->] (O) -- ($(O)!1!30:+(0.4,0)$);
+        \node at ($(O) + (0.18, 0.26)$) {$\vec{F_{\text{тр}}}$};
+        \draw[->] (O) -- node[right] {$\vec{N}$} ($(O)!1!30:+(0,{cos(30) * -\m})$);
+        \draw[dashed] (mg) -- (x);
+        \draw[dashed] (mg) -- (y);
     \end{tikzpicture}
+
+    \noindent
+    Когда тело находиться на наклонной плоскости по углом $\alpha$ на дейcтвуют следущие силы: 
+
+    $\vec{mg}$ - сила тяжести
+
+    $\vec{F_{\text{тр}}}$ - сила трения. 
+
+    \noindent
+    Проведем систему координат, таким образом, что ось $X$ паралельна наклонной плоскости, ось $Y$ - перпендикулярна наклонной плоскости, начало координат - центр тяжести тела. Тогда сила тяжести разложиться на две составляющие:
+    \[
+        \vec{F_x} = \vec{mg} \cdot \sin(\alpha)
+    \]
+    \[
+        \vec{F_y} = \vec{mg} \cdot \cos(\alpha)
+    \]
+    причем только сила  $F_x$ будет двигать тело вдоль наклонной плоскости, а сила $\vec{F_y}$ приведёт к созданию силы трения $\vec{F_{\text{тр}}}$, которая равна:
+    \[
+        \vec{F_{\text{тр}}} = \mu \cdot N
+    \]
+    где
+
+    $\mu$ - коэффициент трения, 
+
+    $N$ - сила реакции опоры, которая будет равна $\vec{F_y}$ и направлена в протиположную строну.
+
+    Равнодействующая сила действующуя на тело:
+    \[
+        \vec{F} = \vec{F_x} - \vec{F_{\text{тр}}} = \vec{mg} \cdot \sin\alpha - \mu \cdot \vec{mg} \cdot \cos\alpha
+    \]
+    Ускорение деуствующее на тело:
+    \[
+        \vec{a} = \frac{\vec{F}}{m} = \vec{g} \cdot \sin(\alpha) - \mu \cdot \vec{g} \cdot \cos(\alpha) = \vec{g} \cdot (\sin(\alpha) - \mu \cdot \cos(\alpha))
+    \]
+    Рассмотрим теперь систему из двух тел связанных нерастяжимой нитью и перекинутой через невесомый шкив, следующим образом:
+
+    \noindent
+    \begin{tikzpicture}[scale=1.8]
+        \def\m{-1.3}
+        \def\l{8}
+        \coordinate (A) at (0, 0);
+        \coordinate (C1) at (45:\l);
+        \coordinate (B) at (\l,0);
+        \coordinate (C2) at (0, {sin(30)*\l});
+        \coordinate (C) at (intersection of A--C1 and B--C2);
+        \draw (A) -- (C) -- (B) -- cycle;
+        \draw (A) + (0.3, 0) arc[start angle=0, end angle=45, radius=0.3];
+        \node at (0.5, 0.2) {$\alpha$};
+        \draw (B) + (-0.3, 0) arc[start angle=180, end angle=152, radius=0.3];
+        \draw (B) + (-0.2, 0) arc[start angle=180, end angle=152, radius=0.2];
+        \node at ($(B) + (-1, 0.2)$) {$\beta$};
+        \draw (C) circle(0.25);
+        \draw[rotate=45] (1.5, 0) rectangle(2.5, 0.5);
+        \coordinate (O1) at ($(0,0)!1!45:(2,0.25)$);
+        \coordinate (mg1) at ($(O1) + (0, \m)$);
+        \draw[fill=red] (O1) circle (1pt);
+        \draw[->] (O1) -- node[right] {$\vec{mg}$} (mg1);
+        \draw[->] (O1) -- node[above] {$\vec{F_{1x}}$} ($(O1)!1!45:+({sin(45) * \m},0)$) coordinate (x1);
+        \draw[->] (O1) -- node[right] {$\vec{F_{1y}}$} ($(O1)!1!45:+(0,{cos(45) * \m})$) coordinate (y1);
+        \draw[->] (O1) -- ($(O1)!1!45:+(0.4,0)$);
+        \node at ($(O1) + (0.25, 0)$) {$\vec{F_{\text{тр1}}}$};
+        \draw[->] (O1) -- node[right] {$\vec{N_1}$} ($(O1)!1!45:+(0,{cos(45) * -\m})$);
+        \draw[dashed] (mg1) -- (x1);
+        \draw[dashed] (mg1) -- (y1);
+        \draw[rotate=-26.5] ($(C) + (1, 0)$) rectangle($(C) + (2, 0.5)$);
+        \coordinate (O2) at ($(C) + (1.44, -0.43)$);
+        \coordinate (mg2) at ($(O2) + (0, \m)$);
+        \draw[fill=red] (O2) circle (1pt);
+        \draw[->] (O2) -- node[right] {$\vec{mg}$} (mg2);
+        \draw[->] (O2) -- node[above] {$\vec{F_{2x}}$} ($(O2)!1!-30:+({sin(-30) * \m},0)$) coordinate (x2);
+        \draw[->] (O2) -- node[left] {$\vec{F_{2y}}$} ($(O2)!1!-30:+(0,{cos(-30) * \m})$) coordinate (y2);
+        \draw[->] (O2) -- node[below] {$\vec{F_{\text{тр2}}}$} ($(O2)!1!-30:+(0.4,0)$);
+        \draw[->] (O2) -- node[right] {$\vec{N_2}$} ($(O2)!1!-30:+(0,{cos(-30) * -\m})$);
+        \draw[dashed] (mg2) -- (x2);
+        \draw[dashed] (mg2) -- (y2);
+        \coordinate (P1) at ($(O1) + ({cos(45) * 0.5}, {sin(45) * 0.5})$);
+        \coordinate (P2) at ($(C) + ({cos(135) * 0.25}, {sin(135) * 0.25})$);
+        \draw (P1) -- (P2);
+        \coordinate (P3) at ($(C) + ({cos(45) * 0.25}, {sin(45) * 0.25})$);
+        \coordinate (P4) at ($(O2) + ({cos(155) * 0.48}, {sin(155) * 0.48})$);
+        \draw (P3) -- (P4);
+    \end{tikzpicture}
+
+    \noindent
+    В этом случае равнодействующая сила будет:
+    \[
+        \vec{F} = \vec{F_{1x}} - \vec{F_{2x}} - \vec{F_{\text{тр1}}} - \vec{F_{\text{тр2}}} = \vec{mg} \cdot \sin(\alpha) - \vec{mg} \cdot \sin(\beta) - \mu \cdot \vec{mg} \cdot \cos(\alpha)  - \mu \cdot \vec{mg} \cdot \cos(\beta)
+    \]
+    т. е. осуществлять движение будет только сила $F_{1x}$, а сопротивлятся движению будут силы $F_{2x}$, $F_{\text{тр1}}$ и $F_{\text{тр2}}$ (силы трения всегда направлены в сторону противоложную движению).
+
+    Ускорение будет:
+    \[
+        \vec{a} = \vec{g} \cdot \sin(\alpha) - \vec{g} \cdot \sin(\beta) - \mu \cdot \vec{g} \cdot \cos(\alpha) - \mu \cdot \vec{g} \cdot \cos(\beta)  = \vec{g} \cdot (\sin(\alpha) - \sin(\beta)  - \mu \cdot \cos(\alpha) - \mu \cdot \cos(\beta))
+    \]
+    Если принебречь трением $\mu=0$, то ускорение будет:
+    \[
+        \vec{a} = \vec{g} \cdot (\sin(\alpha) - \sin(\beta))
+    \]
 \end{document}
