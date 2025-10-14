@@ -23,7 +23,7 @@
         \draw[rotate=30] (2, 0) rectangle(3, 0.5);
         \coordinate (O) at ($(0,0)!1!30:(2.5,0.25)$);
         \coordinate (mg) at ($(O) + (0, \m)$);
-        \draw[fill=red] (O) circle (1pt);
+        \draw[fill] (O) circle (1pt);
         \draw[->] (O) -- node[right] {$\vec{mg}$} (mg);
         \draw[->] (O) -- node[above] {$\vec{F_x}$} ($(O)!1!30:+({sin(30) * \m},0)$) coordinate (x);
         \draw[->] (O) -- node[right] {$\vec{F_y}$} ($(O)!1!30:+(0,{cos(30) * \m})$) coordinate (y);
@@ -63,7 +63,7 @@
     \[
         \vec{F} = \vec{F_x} - \vec{F_{\text{тр}}} = \vec{mg} \cdot \sin(\alpha) - \mu \cdot \vec{mg} \cdot \cos(\alpha)
     \]
-    Ускорение деуствующее на тело:
+    Ускорение действующее на тело:
     \[
         \vec{a} = \frac{\vec{F}}{m} = \vec{g} \cdot \sin(\alpha) - \mu \cdot \vec{g} \cdot \cos(\alpha) = \vec{g} \cdot (\sin(\alpha) - \mu \cdot \cos(\alpha))
     \]
@@ -81,14 +81,14 @@
         \draw (A) -- (C) -- (B) -- cycle;
         \draw (A) + (0.3, 0) arc[start angle=0, end angle=45, radius=0.3];
         \node at (0.5, 0.2) {$\alpha$};
-        \draw (B) + (-0.3, 0) arc[start angle=180, end angle=152, radius=0.3];
-        \draw (B) + (-0.2, 0) arc[start angle=180, end angle=152, radius=0.2];
-        \node at ($(B) + (-1, 0.2)$) {$\beta$};
+        \draw (B) + (-0.3, 0) arc[start angle=180, end angle=153, radius=0.3];
+        \draw (B) + (-0.2, 0) arc[start angle=180, end angle=153, radius=0.2];
+        \node at ($(B) + (-0.8, 0.15)$) {$\beta$};
         \draw (C) circle(0.25);
         \draw[rotate=45] (1.5, 0) rectangle(2.5, 0.5);
         \coordinate (O1) at ($(0,0)!1!45:(2,0.25)$);
         \coordinate (mg1) at ($(O1) + (0, \m)$);
-        \draw[fill=red] (O1) circle (1pt);
+        \draw[fill] (O1) circle (1pt);
         \draw[->] (O1) -- node[right] {$\vec{mg}$} (mg1);
         \draw[->] (O1) -- node[above] {$\vec{F_{1x}}$} ($(O1)!1!45:+({sin(45) * \m},0)$) coordinate (x1);
         \draw[->] (O1) -- node[right] {$\vec{F_{1y}}$} ($(O1)!1!45:+(0,{cos(45) * \m})$) coordinate (y1);
@@ -97,22 +97,24 @@
         \draw[->] (O1) -- node[right] {$\vec{N_1}$} ($(O1)!1!45:+(0,{cos(45) * -\m})$);
         \draw[dashed] (mg1) -- (x1);
         \draw[dashed] (mg1) -- (y1);
-        \draw[rotate=-26.5] ($(C) + (1, 0)$) rectangle($(C) + (2, 0.5)$);
-        \coordinate (O2) at ($(C) + (1.44, -0.43)$);
+        \draw[rotate around={-26.5:(C)}] ($(C) + (1, 0)$) rectangle($(C) + (2, 0.5)$);
+        \coordinate (O2) at ($(C) + (1.45395,-0.4455)$);
         \coordinate (mg2) at ($(O2) + (0, \m)$);
-        \draw[fill=red] (O2) circle (1pt);
+        \draw[fill] (O2) circle (1pt);
         \draw[->] (O2) -- node[right] {$\vec{mg}$} (mg2);
-        \draw[->] (O2) -- node[above] {$\vec{F_{2x}}$} ($(O2)!1!-30:+({sin(-30) * \m},0)$) coordinate (x2);
-        \draw[->] (O2) -- node[left] {$\vec{F_{2y}}$} ($(O2)!1!-30:+(0,{cos(-30) * \m})$) coordinate (y2);
-        \draw[->] (O2) -- node[below] {$\vec{F_{\text{тр2}}}$} ($(O2)!1!-30:+(0.4,0)$);
-        \draw[->] (O2) -- node[right] {$\vec{N_2}$} ($(O2)!1!-30:+(0,{cos(-30) * -\m})$);
+        \draw[->] (O2) -- ($(O2)!1!-26.5:+({sin(-26.5) * \m},0)$) coordinate (x2);
+        \node at ($(x2) + (0.2,0)$) {$\vec{F_{2x}}$};
+        \draw[->] (O2) -- node[left] {$\vec{F_{2y}}$} ($(O2)!1!-26.5:+(0,{cos(-26.6) * \m})$) coordinate (y2);
+        \draw[->] (O2) -- ($(O2)!1!-26.5:+(0.4,0)$);
+        \node at ($(O2) + (0.3,0)$) {$\vec{F_{\text{тр2}}}$};
+        \draw[->] (O2) -- node[right] {$\vec{N_2}$} ($(O2)!1!-26.5:+(0,{cos(-26.5) * -\m})$);
         \draw[dashed] (mg2) -- (x2);
         \draw[dashed] (mg2) -- (y2);
         \coordinate (P1) at ($(O1) + ({cos(45) * 0.5}, {sin(45) * 0.5})$);
         \coordinate (P2) at ($(C) + ({cos(135) * 0.25}, {sin(135) * 0.25})$);
         \draw (P1) -- (P2);
-        \coordinate (P3) at ($(C) + ({cos(45) * 0.25}, {sin(45) * 0.25})$);
-        \coordinate (P4) at ($(O2) + ({cos(155) * 0.48}, {sin(155) * 0.48})$);
+        \coordinate (P3) at ($(C) + ({cos(50) * 0.25}, {sin(50) * 0.25})$);
+        \coordinate (P4) at ($(O2) + ({cos(153.5) * 0.5}, {sin(153.5) * 0.5})$);
         \draw (P3) -- (P4);
     \end{tikzpicture}
 
@@ -125,7 +127,7 @@
 
     Ускорение будет:
     \[
-        \vec{a} = \vec{g} \cdot \sin(\alpha) - \vec{g} \cdot \sin(\beta) - \mu \cdot \vec{g} \cdot \cos(\alpha) - \mu \cdot \vec{g} \cdot \cos(\beta)  = \vec{g} \cdot (\sin(\alpha) - \sin(\beta)  - \mu \cdot \cos(\alpha) - \mu \cdot \cos(\beta))
+        \vec{a} = \frac{\vec{F}}{m} = \vec{g} \cdot \sin(\alpha) - \vec{g} \cdot \sin(\beta) - \mu \cdot \vec{g} \cdot \cos(\alpha) - \mu \cdot \vec{g} \cdot \cos(\beta)  = \vec{g} \cdot (\sin(\alpha) - \sin(\beta)  - \mu \cdot \cos(\alpha) - \mu \cdot \cos(\beta))
     \]
     Если принебречь трением $\mu=0$, то ускорение будет:
     \[
