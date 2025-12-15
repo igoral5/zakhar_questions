@@ -1,0 +1,25 @@
+\documentclass{minimal}
+\usepackage{xltxtra}
+\usepackage{fontspec}
+\usepackage{polyglossia}
+\setmainlanguage{russian}
+\setotherlanguage{english}
+\setmainfont{Times New Roman}
+\newfontfamily{\cyrillicfont}{Times New Roman}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+\usepackage{tkz-euclide}
+\begin{document}
+    \begin{tikzpicture}
+    \tkzDefPoint["$A$" left](1,5){A}
+    \tkzDefPoint["$B$" right](4,3){B}
+    \tkzDefPointBy[rotation in rad= center A angle pi/3](B)
+    \tkzGetPoint{C}
+    \tkzDrawSegment(A,B)
+    \tkzDrawPoints(A,B,C)
+    \tkzCompass(A,C)
+    \tkzCompass(B,C)
+    \tkzLabelPoints(C)
+    \end{tikzpicture}
+\end{document}

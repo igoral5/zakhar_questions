@@ -1,0 +1,23 @@
+\documentclass{article}
+\usepackage{xltxtra}
+\usepackage{fontspec}
+\usepackage{polyglossia}
+\setmainlanguage{russian}
+\setotherlanguage{english}
+\setmainfont{Times New Roman}
+\newfontfamily{\cyrillicfont}{Times New Roman}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+\usepackage{array} % Для лучшей работы с таблицами
+\begin{document}
+$$
+\begin{array}{|c|c|} % Окружение с вертикальными линиями
+    \hline % Первая линия
+    \text{Заголовок 1} & \text{Заголовок 2} \\ % Первая строка данных
+    \hline % Вторая линия
+    \text{Данные 1} & \text{Данные 2} \\ % Вторая строка данных
+    \hline % Третья линия
+\end{array}
+$$
+\end{document}

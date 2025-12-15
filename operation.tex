@@ -1,0 +1,206 @@
+\documentclass{article}
+\usepackage{xltxtra}
+\usepackage{fontspec}
+\usepackage{polyglossia}
+\setmainlanguage{russian}
+\setotherlanguage{english}
+\setmainfont{Times New Roman}
+\newfontfamily{\cyrillicfont}{Times New Roman}
+\usepackage{amsmath}
+\begin{document}
+    Как делать сложение, вычитание, умножение и деление в различных системх отсчета. При работе с компьютерами наиболее часто используются системы исчисления по основанию 2, 8, 16. Сложения вычитание, умножение и деление в них осуществляется по правилам аналогичным 10 системе, только перенос в старший разряд или заем из страшего разряда осуществляется не по 10, а по основанию системы исчисления. Так например восьмеричной системе $5_8 + 5_8 = 12_8$ так как уже при $8_{10}$ производится перенос в старший рзряд. $5_{10} + 3_{10} = 8_{10}$, что соответствует $10_8$, кроме того еще остается $2_8$, что в конечном дает $12_8$
+
+    Произведем все 4 действия над $15_{10}$ и $3_{10}$
+
+    Сложение:
+
+    Двоичная:
+    $15_{10} = 1111_2$ и $3_{10} = 11_2$
+    $$
+    \begin{array}{r}
+        +
+        \begin{array}{r}
+            1111\\
+            11\\
+        \end{array} \\
+        \begin{array}{r}
+            \hline
+            10010
+        \end{array}
+    \end{array}
+    $$
+
+    Восьмиричная:
+    $15_{10} = 17_8$ и $3_{10} = 3_8$ 
+    $$
+    \begin{array}{r}
+        +
+        \begin{array}{r}
+            17 \\
+            3 \\
+        \end{array} \\
+        \begin{array}{r}
+            \hline
+            22
+        \end{array}
+    \end{array}
+    $$
+
+    Шестнадцатиричная:
+    $15_{10} = F_{16}$ и $3_{10} = 3_{16}$
+    $$
+    \begin{array}{r}
+        +
+        \begin{array}{r}
+        F \\
+        3 \\
+        \end{array} \\
+        \begin{array}{r}
+        \hline
+        12
+        \end{array}
+    \end{array}
+    $$
+
+    Вычитание:
+
+    Двоичная:
+    $$
+    \begin{array}{r}
+        -
+        \begin{array}{r}
+            1111 \\
+            11 \\
+        \end{array} \\
+        \begin{array}{r}
+            \hline
+            1100 \\
+        \end{array}
+    \end{array}
+    $$
+
+    Восьмиричная:
+    $$
+     \begin{array}{r}
+        -
+        \begin{array}{r}
+            17 \\
+            3 \\
+        \end{array} \\
+        \begin{array}{r}
+            \hline
+            14
+        \end{array}
+    \end{array}
+    $$
+
+    Шестнадцатиричная:
+    $$
+    \begin{array}{r}
+        -
+        \begin{array}{r}
+            F \\
+            3 \\
+        \end{array} \\
+        \begin{array}{r}
+            \hline
+            C
+        \end{array}
+    \end{array}
+    $$
+
+    Умножение:
+
+    Двоичная:
+    $$
+    \begin{array}{r}
+        \times
+        \begin{array}{r}
+            1111 \\
+            11 \\
+            \hline
+        \end{array} \\
+        \begin{array}{r}
+            1111 \\
+            1111\phantom{0} \\
+            \hline
+            101101
+        \end{array}
+    \end{array}
+    $$
+
+    Восьмиричная:
+    $$
+    \begin{array}{r}
+        \times
+        \begin{array}{r}
+            17 \\
+            3 \\
+        \end{array} \\
+        \begin{array}{r}
+            \hline
+            55
+        \end{array}
+    \end{array}
+    $$
+
+    Шестнадцатиричная:
+    $$
+    \begin{array}{r}
+        \times
+        \begin{array}{r}
+            F \\
+            3 \\
+        \end{array} \\
+        \begin{array}{r}
+            \hline
+            2D
+        \end{array}
+    \end{array}
+    $$
+
+    Деление:
+
+    Двоичная:
+    $$
+    \arraycolsep=0.01em
+    \begin{array}{rrrr@{\,}r|l}
+        1&1&1&1&&\,11\\
+        \cline{6-6}
+        1&1&&&&\,101\\
+        \cline{1-2}
+        &&1&1\\
+        &&1&1\\
+        \cline{3-4}
+        &&&0\\
+    \end{array}
+    $$
+
+    Восьмиричная:
+    $$
+    \arraycolsep=0.01em
+    \begin{array}{rr@{\,}r|l}
+        1&7&&\,3\\
+        \cline{4-4}
+        1&7&&\,5\\
+        \cline{1-2}
+        &0\\
+    \end{array}
+    $$
+
+    Шестнадтиричная:
+    $$
+    \arraycolsep=0.01em
+    \begin{array}{r@{\,}r|l}
+        F&&\,3\\
+        \cline{3-3}
+        F&&\,5\\
+        \cline{1-1}
+        0\\
+    \end{array}
+    $$
+
+
+
+
+\end{document}
