@@ -1,0 +1,31 @@
+\documentclass{minimal}
+\usepackage{xltxtra}
+\usepackage{fontspec}
+\usepackage{polyglossia}
+\setmainlanguage{russian}
+\setotherlanguage{english}
+\setmainfont{Times New Roman}
+\newfontfamily{\cyrillicfont}{Times New Roman}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+\begin{document}
+    Если до погружения первого тела в воду на тело действовало ускорение $a$, а после погружения части первого тела в воду, система будет находиться в равносвесии, то равнодействующая сила будет равна по модулю силе Архимеда и направлена в протиположную строну. Сила Архимеда будет равна:
+    $$F_{\mbox{арх}}=\rho g V$$ и направлена вверх. Равнодествующая будет такой же по модую и направлена вниз. Откуда ускорение, которое действует на систему тел: $$a=\frac{-\rho g V}{m_1 + m_2}$$
+    А с другой стороны мы знаем, что это ускорение равно:
+    $$F=m_1 a$$ или $$\rho g V=m_1 a$$ составим и решим уравнение:
+    $$
+    \begin{cases}
+        a&=\frac{-\rho g V}{m_1 + m_2}\\
+        \rho g V&=m_1 a
+    \end{cases}
+    $$
+    Решая это уравнение получим:
+    $$
+      m_2 = 2 \cdot 0.5~\mbox{кг} = 1~\mbox{кг}
+    $$
+    А ускорение будет равно:
+    $$
+        a = \frac{1000~\frac{\mbox{кг}}{\mbox{м}^3} \cdot 9.8~\frac{\mbox{м}}{\mbox{с}^2} \cdot 1.5 \cdot 10^{-4}~\mbox{м}^2}{0.5~\mbox{кг} + 1~\mbox{кг}} = 1~\frac{\mbox{м}}{\mbox{с}^2}
+    $$
+\end{document}
