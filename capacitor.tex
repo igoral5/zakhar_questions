@@ -1,0 +1,76 @@
+\documentclass{article}
+\usepackage{xltxtra}
+\usepackage{fontspec}
+\usepackage{polyglossia}
+\setmainlanguage{russian}
+\setotherlanguage{english}
+\setmainfont{Times New Roman}
+\newfontfamily{\cyrillicfont}{Times New Roman}
+\usepackage{amsmath}
+\usepackage{physics}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,calc}
+\tikzset{
+    >={Stealth[width'=2pt 0.1, length=5pt]}
+}
+\begin{document}
+    \begin{tikzpicture}
+        \draw (-1, 0) -- (1, 0);
+        \foreach \i in {-1, -0.8, ..., 1 }
+            \draw (\i, 0) -- (\i + 0.2, 0.2);
+        \coordinate (O) at (-2, -4);
+        \coordinate (mg) at ($(O) - (0, 2)$);
+        \coordinate (q) at ($(O) -(1, 0)$);
+        \draw (0,0) -- (O);
+        \draw (O) circle (0.5);
+        \draw[->] (O) -- node[right] {$\vec{mg}$} (mg);
+        \draw[->] (O) -- node[above] {$\vec{F_{\text{к}}}$} (q);
+        \draw[->] (O) -- node[right] {$\vec{F}$} ($(O) - (1, 2)$) coordinate (f);
+        \draw[dashed] (mg) -- (f);
+        \draw[dashed] (q) -- (f);
+    \end{tikzpicture}
+    
+    Когда заряженное тело находиться в плоском конденсаторе на него действует сила Кулона:
+    \[
+        \vec{F_{\text{к}}} = q \cdot E
+    \]
+    где $q$ - заряд тела, а $E$ - напряженность электрического поля, которая равна 
+    \[
+        E = \frac{U}{d}
+    \]
+    где $U$ - напряжение на конденсаторе, $d$ - расстояние между пластинами конденсатора.
+
+    Кроме этого на тело действует сила тяжести $\vec{mg}$. Равнодействующая этих сил 
+    \[
+        \vec{F} = \vec{F_{\text{к}}} + \vec{mg}
+    \]
+    Эта сила $\vec{F}$ растягивает нить на $\Delta x = 0.5\ \text{мм}$ Кроме того мы знаем коэффициент упругости нити $k = 100\ \frac{\text{Н}}{\text{м}}$
+
+    Следовательно:
+    \[
+        F = \Delta x \cdot k
+    \]
+    Модуль силы Кулона будет равен:
+    \[
+        F_{\text{к}} = \sqrt{F^2 - (mg)^2}
+    \]
+    \[
+        F_{\text{к}} = \sqrt{(\Delta x \cdot k)^2 - (mg)^2}
+    \]
+    С другой стороны сила Кулона будет равна:
+    \[
+        F_{\text{к}} = q \cdot \frac{U}{d}
+    \]
+    Отсюда:
+    \[
+        q \cdot \frac{U}{d} = \sqrt{(\Delta x \cdot k)^2 - (mg)^2}
+    \]
+    Выразим отсюда напряжение на конденсаторе:
+    \[
+        U = \frac{d \cdot \sqrt{(\Delta x \cdot k)^2 - (mg)^2}}{q}
+    \]
+    Подставим в формулу значения:
+    \[
+        U = \frac{5 \cdot 10^{-2}\ \text{м} \cdot \sqrt{(0.5 \cdot 10^{-3}\ \text{м} \cdot 100\ \frac{\text{Н}}{\text{м}})^2 - (3 \cdot 10^{-3}\ \text{кг} \cdot 9.8\ \frac{\text{м}}{\text{с}^2})^2}}{4 \cdot 10^{-7}\ \text{Кл}} \approx 5000 \ \text{В}
+    \]
+\end{document}
