@@ -14,22 +14,26 @@
     >={Stealth[width'=2pt 0.1, length=5pt]}
 }
 \begin{document}
-    \begin{tikzpicture}
-        \draw (-1, 0) -- (1, 0);
-        \foreach \i in {-1, -0.8, ..., 1 }
-            \draw (\i, 0) -- (\i + 0.2, 0.2);
-        \coordinate (O) at (-2, -4);
-        \coordinate (mg) at ($(O) - (0, 2)$);
-        \coordinate (q) at ($(O) -(1, 0)$);
-        \draw (0,0) -- (O);
-        \draw[fill=blue!20] (O) circle (0.2);
-        \draw[->] (O) -- node[right] {$\vec{mg}$} (mg);
-        \draw[->] (O) -- node[above] {$\vec{F_{\text{к}}}$} (q);
-        \draw[->] (O) -- node[right] {$\vec{F}$} ($(O) - (1, 2)$) coordinate (f);
-        \draw[dashed] (mg) -- (f);
-        \draw[dashed] (q) -- (f);
-    \end{tikzpicture}
-    
+    \begin{figure}
+        \centering
+        \begin{tikzpicture}
+            \draw (-1, 0) -- (1, 0);
+            \foreach \i in {-1, -0.8, ..., 1 }
+                \draw (\i, 0) -- (\i + 0.2, 0.2);
+            \coordinate (O) at (-2, -4);
+            \coordinate (mg) at ($(O) - (0, 2)$);
+            \coordinate (q) at ($(O) -(1, 0)$);
+            \draw (0,0) -- (O);
+            \draw[fill=blue!20] (O) circle (0.2);
+            \draw[->] (O) -- node[right] {$\vec{mg}$} (mg);
+            \draw[->] (O) -- node[above] {$\vec{F_{\text{к}}}$} (q);
+            \draw[->] (O) -- node[right] {$\vec{F}$} ($(O) - (1, 2)$) coordinate (f);
+            \draw[dashed] (mg) -- (f);
+            \draw[dashed] (q) -- (f);
+        \end{tikzpicture}
+        \caption{Заряженный шарик в конденсаторе}
+    \end{figure}
+
     Когда заряженное тело находиться в плоском конденсаторе на него действует сила Кулона:
     \[
         \vec{F_{\text{к}}} = q \cdot E
