@@ -7,6 +7,7 @@
 \setmainfont{Times New Roman}
 \newfontfamily{\cyrillicfont}{Times New Roman}
 \usepackage{amsmath}
+\usepackage{amssymb}
 \begin{document}
     Эту задачу надо решать исходя из энергии системы в начальный момент и на момент, когда пружина пытается оторвать нижнюю шайбу от стола. Рассмотрим начальный момент, в этом случае пружина сжата весом двух грузов, груза $m$ и верхней
     шайбы $M$, при этом деформация пружины:
@@ -36,46 +37,46 @@
     \]
     Составим баланс энергии:
     \[
-        \frac{k x_1^2}{2} \geq \frac{k x_2^2}{2} + Mg(x_1 + x_2)
+        \frac{k x_1^2}{2} \geqslant \frac{k x_2^2}{2} + Mg(x_1 + x_2)
     \]
     Перенесем энергию пружины в одну сторону:
     \[
-        \frac{k x_1^2}{2} - \frac{k x_2^2}{2} \geq Mg(x_1 + x_2)
+        \frac{k x_1^2}{2} - \frac{k x_2^2}{2} \geqslant Mg(x_1 + x_2)
     \]
     Вынесем $\frac{k}{2}$ за скобку:
     \[
-        \frac{k}{2}(x_1^2 - x_2^2) \geq Mg(x_1 + x_2)
+        \frac{k}{2}(x_1^2 - x_2^2) \geqslant Mg(x_1 + x_2)
     \]
     Разложим $x_1^2 - x_2^2$ по формуле разности квадратов:
     \[
-        \frac{k}{2}(x_1 - x_2)(x_1 + x_2) \geq Mg(x_1 + x_2)
+        \frac{k}{2}(x_1 - x_2)(x_1 + x_2) \geqslant Mg(x_1 + x_2)
     \]
     Сократим на $(x_1 + x_2)$:
     \[
-        \frac{k}{2}(x_1 - x_2) \geq Mg
+        \frac{k}{2}(x_1 - x_2) \geqslant Mg
     \]
     Подставим вместо $x_1$ и $x_2$ их значения:
     \[
-        \frac{k}{2}(\frac{(M + m)g}{k} - \frac{Mg}{k}) \geq Mg
+        \frac{k}{2}(\frac{(M + m)g}{k} - \frac{Mg}{k}) \geqslant Mg
     \]
     Умножим на $k$ и 2 перенесем вправо:
     \[
-        (M + m)g - Mg \geq 2Mg
+        (M + m)g - Mg \geqslant 2Mg
     \]
     Разделим обе части на $g$ и приведем подобные:
     \[
-        m \geq 2M
+        m \geqslant 2M
     \]
     Откуда
     \[
-        M \leq \frac{m}{2}
+        M \leqslant \frac{m}{2}
     \]
     Подставим $m$
     \[
-        M \leq \frac{0.5\ \text{кг}}{2}
+        M \leqslant \frac{0.5\ \text{кг}}{2}
     \]
     \[
-        M \leq 0.25\ \text{кг}
+        M \leqslant 0.25\ \text{кг}
     \]
 
 \end{document}
