@@ -1,0 +1,154 @@
+\documentclass{minimal}
+\usepackage{xltxtra}
+\usepackage{fontspec}
+\usepackage{polyglossia}
+\setmainlanguage{russian}
+\setotherlanguage{english}
+\setmainfont{Times New Roman}
+\newfontfamily{\cyrillicfont}{Times New Roman}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,calc,patterns}
+\pgfdeclarepatternformonly{sparse hatch}{\pgfqpoint{-0.4pt}{-0.4pt}}{\pgfqpoint{10pt}{10pt}}{\pgfqpoint{9pt}{9pt}}{%
+    \pgfsetlinewidth{0.4pt}%
+    \pgfpathmoveto{\pgfqpoint{0pt}{0pt}}%
+    \pgfpathlineto{\pgfqpoint{9.1pt}{9.1pt}}%
+    \pgfusepath{stroke}%
+}
+\tikzset{
+    >={Stealth[width'=2pt 0.1, length=5pt]}
+}
+\DeclareMathOperator{\tg}{tg}
+\DeclareMathOperator{\ctg}{ctg}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.4em}
+\begin{document}
+    \textbf{Задача.}
+    На поверхности клина, движущегося по гладкой горизонтальной плоскости, находится груз. Угол между гранью клина и горизонтальной плоскостью равен \(60^\circ\), а коэффициент трения груза о поверхность клина равен \(0{,}12\). При каком ускорении клина груз будет скользить относительно клина равномерно вверх? Какие физические законы использованы при решении и почему они здесь применимы?
+
+    \begin{center}
+    \begin{tikzpicture}[scale=1.15, every node/.style={inner sep=1.5pt}]
+        \def\ang{60}
+        \def\Ln{2.15}
+        \def\Lf{1.8}
+        \def\Lmg{1.15}
+        % Поверхность, с которой связана система отсчёта
+        \fill[pattern=sparse hatch] (-1.05,-0.32) rectangle (4.35,0);
+        \coordinate (A) at (0.45,0);
+        \coordinate (B) at (3.7,0);
+        \coordinate (C) at (3.7,{3.25*tan(\ang)});
+        \fill[white] (A) -- (B) -- (C) -- cycle;
+        \draw (A) -- (B) -- (C) -- cycle;
+        \draw (-1.05,0) -- (4.35,0);
+        \draw ($(B)+(-0.22,0)$) -- ++(0,0.22) -- ++(0.22,0);
+        \draw ($(A)+(0.55,0)$) arc[start angle=0, end angle=\ang, radius=0.55];
+        \node at ($(A)+({0.92*cos(30)},{0.92*sin(30)})$) {$\alpha$};
+        % Груз
+        \begin{scope}[shift={(A)}, rotate=\ang]
+            \draw[fill=white] (2.55,0) rectangle (3.5,0.52);
+            \coordinate (O) at (3.025,0.26);
+        \end{scope}
+        % Концы сил и их проекции на оси
+        \coordinate (Ntip) at ($(O)+({-\Ln*sin(\ang)},{\Ln*cos(\ang)})$);
+        \coordinate (Ftip) at ($(O)+({-\Lf*cos(\ang)},{-\Lf*sin(\ang)})$);
+        \coordinate (Nx) at (Ntip |- O);
+        \coordinate (Ny) at (Ntip -| O);
+        \coordinate (Fx) at (Ftip |- O);
+        \coordinate (Fy) at (Ftip -| O);
+        % Оси: X влево, Y вверх. Тонкие сплошные
+        \draw[thin] (O) -- ++(0.4,0);
+        \draw[thin, ->] (O) -- ($(Nx)+(-0.42,0)$) node[left] {$X$};
+        \draw[thin] (O) -- ($(Fy)+(0,-0.38)$);
+        \draw[thin, ->] (O) -- ($(Ny)+(0,0.42)$) node[left] {$Y$};
+        % Проекции N и Fтр — тонкий пунктир
+        \draw[thin, dashed] (Ntip) -- (Nx);
+        \draw[thin, dashed] (Ntip) -- (Ny);
+        \draw[thin, dashed] (Ftip) -- (Fx);
+        \draw[thin, dashed] (Ftip) -- (Fy);
+        % Скорость груза относительно клина — вверх по грани; подпись в стороне от стрелки
+        \coordinate (V0) at ($(A)+({4.55*cos(\ang)},{4.55*sin(\ang)})+({-0.48*sin(\ang)},{0.48*cos(\ang)})$);
+        \coordinate (V1) at ($(V0)+({0.75*cos(\ang)},{0.75*sin(\ang)})$);
+        \draw[->] (V0) -- (V1);
+        \node[anchor=south east, inner sep=1pt] at ($(V0)!0.55!(V1)+({-0.1*sin(\ang)},{0.1*cos(\ang)})$) {$\vec{v}_{\text{отн}}$};
+        % Силы — толстые
+        \draw[line width=1.15pt, -{Stealth[length=7pt, width=5.5pt]}] (O) -- ++(0,-\Lmg) node[right, xshift=2pt] {$m\vec{g}$};
+        \draw[line width=1.15pt, -{Stealth[length=7pt, width=5.5pt]}] (O) -- (Ntip) node[above left] {$\vec{N}$};
+        \draw[line width=1.15pt, -{Stealth[length=7pt, width=5.5pt]}] (O) -- (Ftip) node[left, xshift=-5pt] {$\vec{F}_{\text{тр}}$};
+        \fill (O) circle (1.1pt);
+        % Ускорение клина — вдоль оси X
+        \draw[->, thick] ($(C)+(-0.95,-0.28)$) -- node[above] {$\vec{a}$} ++(-1.5,0);
+    \end{tikzpicture}
+    \end{center}
+
+    Система отсчёта связана с неподвижной горизонтальной поверхностью. Начало координат~— текущее положение центра тяжести груза. Ось \(X\) направлена горизонтально влево, по ускорению клина, ось \(Y\)~— вертикально вверх. Тонким пунктиром показаны проекции \(\vec{N}\) и \(\vec{F}_{\text{тр}}\) на эти оси. \(\vec{v}_{\text{отн}}\)~— скорость груза относительно клина.
+
+    \textbf{Дано:} \(\alpha = 60^\circ\), \(\mu = 0{,}12\). Клин движется по гладкой горизонтальной плоскости, груз скользит по его грани вверх равномерно.
+
+    \textbf{Найти:} ускорение клина \(a\).
+
+    \textbf{Решение.}
+
+    Систему отсчёта свяжем с горизонтальной поверхностью, по которой скользит клин. Поверхность покоится, поэтому система инерциальна. Начало координат~— текущее положение центра тяжести груза. Ось \(X\) направлена горизонтально влево, по ускорению клина, ось \(Y\)~— вертикально вверх.
+
+    \textbf{В этой инерциальной системе на груз действуют только три силы: тяжесть \(m\vec{g}\), реакция опоры \(\vec{N}\) и трение \(\vec{F}_{\text{тр}}\). Других сил нет.} Ускорение клина само по себе силой не является, и силу инерции вводить не нужно. Второй закон Ньютона поэтому записывается сразу суммой этих трёх сил:
+    \[
+        m\vec{g} + \vec{N} + \vec{F}_{\text{тр}} = m\vec{a}.
+    \]
+
+    \(m\vec{g}\) направлена вертикально вниз. \(\vec{N}\) перпендикулярна грани и отклонена от оси \(Y\) влево на угол \(\alpha\). Груз скользит вверх по грани, значит трение~— скольжения,
+    \[
+        F_{\text{тр}} = \mu N,
+    \]
+    и направлено вниз по грани, против \(\vec{v}_{\text{отн}}\).
+
+    Клин не вращается и движется поступательно с ускорением \(a\) вдоль оси \(X\). Относительно клина груз движется равномерно, относительное ускорение равно нулю, поэтому ускорение груза относительно поверхности совпадает с ускорением клина:
+    \[
+        a_X = a, \qquad a_Y = 0.
+    \]
+
+    Проекции трёх сил. На ось \(X\) и реакция, и трение дают составляющие влево; на ось \(Y\) реакция направлена вверх, трение и тяжесть~— вниз:
+    \[
+        N\sin\alpha + \mu N\cos\alpha = ma,
+    \]
+    \[
+        N\cos\alpha - \mu N\sin\alpha - mg = 0.
+    \]
+    Из второго уравнения
+    \[
+        N = \frac{mg}{\cos\alpha - \mu\sin\alpha}.
+    \]
+    Подставляем в первое и сокращаем \(m \neq 0\):
+    \[
+        a = g\frac{\sin\alpha + \mu\cos\alpha}{\cos\alpha - \mu\sin\alpha} = g\frac{\tg\alpha + \mu}{1 - \mu\tg\alpha}.
+    \]
+    При \(\alpha = 60^\circ\) будет \(\tg\alpha = \sqrt{3}\), поэтому
+    \[
+        a = g\frac{\sqrt{3} + 0{,}12}{1 - 0{,}12\sqrt{3}}.
+    \]
+    Численно \(\sqrt{3} \approx 1{,}732\), \(0{,}12\sqrt{3} \approx 0{,}208\):
+    \[
+        a \approx g\frac{1{,}852}{0{,}792} \approx 2{,}34\,g.
+    \]
+    При \(g = 9{,}8~\frac{\text{м}}{\text{с}^2}\)
+    \[
+        a \approx 2{,}34 \cdot 9{,}8~\frac{\text{м}}{\text{с}^2} \approx 22{,}9~\frac{\text{м}}{\text{с}^2}.
+    \]
+    Ускорение направлено по оси \(X\), в сторону острого угла клина.
+
+    \textbf{Какие законы использованы.}
+
+    Второй закон Ньютона в инерциальной системе поверхности. Он записывается без сил инерции именно потому, что система инерциальна, а на груз действуют только \(m\vec{g}\), \(\vec{N}\) и \(\vec{F}_{\text{тр}}\).
+
+    Закон трения скольжения \(F_{\text{тр}} = \mu N\). Груз скользит, коэффициент трения задан, а слово «вверх» фиксирует направление скорости и тем самым направление трения.
+
+    Равенство ускорений груза и клина. Клин движется поступательно, движение груза по грани равномерное, значит относительное ускорение равно нулю и \(a_X = a\), \(a_Y = 0\).
+
+    Гладкость горизонтальной плоскости означает, что ускорение клина горизонтально. Масса груза сокращается, масса клина не нужна: ищется ускорение, а не сила, которая его поддерживает.
+
+    \textbf{Ответ:}
+    \[
+        a = g\frac{\sqrt{3} + 0{,}12}{1 - 0{,}12\sqrt{3}} \approx 22{,}9~\frac{\text{м}}{\text{с}^2}
+    \]
+    при \(g = 9{,}8~\frac{\text{м}}{\text{с}^2}\). Ускорение направлено горизонтально влево, по оси \(X\), в сторону острого угла клина.
+\end{document}
