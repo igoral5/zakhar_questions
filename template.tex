@@ -1,13 +1,14 @@
 \documentclass{minimal}
-\usepackage{xltxtra}
 \usepackage{fontspec}
 \usepackage{polyglossia}
 \setmainlanguage{russian}
 \setotherlanguage{english}
 \setmainfont{Times New Roman}
-\newfontfamily{\cyrillicfont}{Times New Roman}
+\newfontfamily{\cyrillicfont}[Ligatures=TeX]{Times New Roman}
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{unicode-math}
+\setmathfont{TeX Gyre Termes Math}
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta}
 \begin{document}
